@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block content %}
+<section id="profile-details">
+    <h1>Profile Details</h1>
+    <div class="info-section">
+        <div class="profile-header">
+            {% if profile.profile_picture %}
+            <img class="profile-img" src="{{ profile.profile_picture.url }}" alt="profile-image">
+            {% else %}
+            <img class="profile-img" src="{% static 'images/default-profile.png' %}" alt="default-profile-image">
+            {% endif %}
+
+            {%if profile.first_name%}
+            <p class="description">{{ profile.first_name }} </p>
+            {%endif%}
+            {%if profile.last_name%}
+            <p class="description">{{ profile.last_name }} </p>
+            {%endif%}
+            <p class="description">Username: {{ profile.username }}</p>
+            <p class="description">Email: {{ profile.email }}</p>
+            <p class="description">Age: {{ profile.age }}</p>
+            <p class="description">Total price: {{ total_price }}</p>
+            <div class="buttons">
+                <a href="{%url 'profile_update'%}" class="edit-button">Edit</a>
+                <a href="{%url 'profile_delete'%}" class="delete-button">Delete</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
